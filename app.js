@@ -25,7 +25,8 @@ var squares = document.querySelectorAll('.square');
 
 for (var i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', function(){
-      console.log(this)
+      console.log(this);
+      this.innerHTML = "<span>" + currentPlayer.marker + "</span>";
       // check if the square has already been marked
       // mark an x or an o
       // check to see if there's a winner
@@ -41,16 +42,3 @@ for (var i = 0; i < squares.length; i++) {
 //
 // if the value of the text inside the box is null, it should be able to be clicked on
 //  using something like an if statement that is reversed like !('#value')
-//  
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
