@@ -7,8 +7,11 @@
 }
 
 .square {
-  width: 192px;
-  height: 192px;
+  width: 142px;
+  height: 142px;
   border: 4px solid black;
   float: left;
+  text-align: center;
+  padding: 25px;
+  font-size: 120px;
 }

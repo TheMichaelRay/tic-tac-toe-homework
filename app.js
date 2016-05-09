@@ -10,6 +10,7 @@ var game = {
 var currentPlayer = game.player1;
 var mark = currentPlayer.marker;
 var winner;
+var squares = document.querySelectorAll('.square');
 
 function winRow() {
   if ((squares[0].innerHTML === mark && squares[1].innerHTML === mark && squares[2].innerHTML === mark) ||
@@ -45,7 +46,6 @@ function switchTurns() {
   }
 }
 
-var squares = document.querySelectorAll('.square');
 
 // squares.addEventListener('click', function(){
 //   console.log("clicked!!")
