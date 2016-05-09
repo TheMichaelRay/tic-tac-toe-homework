@@ -1,9 +1,13 @@
 var game = {
   player1: {
-    marker: "X"
+    marker: "X",
+    score: 0,
+    html: '#playerXScore'
   },
   player2: {
-    marker: "O"
+    marker: "O",
+    score: 0,
+    html: '#playerOScore'
   }
 }
 
@@ -11,13 +15,19 @@ var currentPlayer = game.player1;
 var mark = currentPlayer.marker;
 var winner;
 var squares = document.querySelectorAll('.square');
+var scores = document.querySelector(currentPlayer.html);
+// var playerOScore = document.querySelector('#playerOScore');
+// var playerXScore = document.querySelector('#playerXScore');
+
 
 function winRow() {
   if ((squares[0].innerHTML === mark && squares[1].innerHTML === mark && squares[2].innerHTML === mark) ||
       (squares[3].innerHTML === mark && squares[4].innerHTML === mark && squares[5].innerHTML === mark) ||
       (squares[6].innerHTML === mark && squares[7].innerHTML === mark && squares[8].innerHTML === mark)) {
         console.log("BOOM");
-        winner = currentPlayer
+        winner = currentPlayer;
+        currentPlayer.score +=1;
+        scores.innerHTML = currentPlayer.score
   }
 }
 
@@ -26,7 +36,9 @@ function winColumn() {
       (squares[1].innerHTML === mark && squares[4].innerHTML === mark && squares[7].innerHTML === mark) ||
       (squares[2].innerHTML === mark && squares[5].innerHTML === mark && squares[8].innerHTML === mark)) {
         console.log("BOOM");
-        winner = currentPlayer
+        winner = currentPlayer;
+        currentPlayer.score +=1;
+        scores.innerHTML = currentPlayer.score
   }
 }
 
@@ -35,6 +47,8 @@ function winDiag() {
       (squares[2].innerHTML === mark && squares[4].innerHTML === mark && squares[6].innerHTML === mark)) {
         console.log("BOOM");
         winner = currentPlayer;
+        currentPlayer.score +=1;
+        scores.innerHTML = currentPlayer.score
       }
 }
 
