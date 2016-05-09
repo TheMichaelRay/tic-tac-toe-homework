@@ -50,18 +50,32 @@ function getWinner (){
 
 
 function winRow() {
-  if ((squares[0].innerHTML === mark && squares[1].innerHTML === mark && squares[2].innerHTML === mark) ||
-      (squares[3].innerHTML === mark && squares[4].innerHTML === mark && squares[5].innerHTML === mark) ||
-      (squares[6].innerHTML === mark && squares[7].innerHTML === mark && squares[8].innerHTML === mark)) {
+  for(i=0; i<9; i+=3)
+  if (squares[i].innerHTML === mark && squares[i+1].innerHTML === mark && squares[i+2].innerHTML === mark) {
         logWinner()
   }
 }
+// function winRow() {
+//   if ((squares[0].innerHTML === mark && squares[1].innerHTML === mark && squares[2].innerHTML === mark) ||
+//       (squares[3].innerHTML === mark && squares[4].innerHTML === mark && squares[5].innerHTML === mark) ||
+//       (squares[6].innerHTML === mark && squares[7].innerHTML === mark && squares[8].innerHTML === mark)) {
+//         logWinner()
+//   }
+// }
 
-function winColumn() {
-  if ((squares[0].innerHTML === mark && squares[3].innerHTML === mark && squares[6].innerHTML === mark) ||
-      (squares[1].innerHTML === mark && squares[4].innerHTML === mark && squares[7].innerHTML === mark) ||
-      (squares[2].innerHTML === mark && squares[5].innerHTML === mark && squares[8].innerHTML === mark)) {
-        logWinner()
+
+// function winColumn() {
+//   if ((squares[0].innerHTML === mark && squares[3].innerHTML === mark && squares[6].innerHTML === mark) ||
+//       (squares[1].innerHTML === mark && squares[4].innerHTML === mark && squares[7].innerHTML === mark) ||
+//       (squares[2].innerHTML === mark && squares[5].innerHTML === mark && squares[8].innerHTML === mark)) {
+//         logWinner()
+//   }
+// }
+  function winColumn() {
+    for (i=0; i<3; i++) {
+      if (squares[i].innerHTML === mark && squares[i+3].innerHTML === mark && squares[i+6].innerHTML === mark) {
+          logWinner()
+    }
   }
 }
 
@@ -91,20 +105,19 @@ function switchTurns() {
 document.querySelector('button').addEventListener('click', reset)
 
 for (var i = 0; i < squares.length; i++) {
-    squares[i].addEventListener('click', function(){
-      // if (winner){
-        // console.log(currentPlayer + " has won!")} else
-        if (!this.innerHTML) {
-        console.log(this);
-        this.classList += currentPlayer.class;
-        this.innerHTML = currentPlayer.marker;
-        // check if the square has already been marked
-        // mark an x or an o
-        // check to see if there's a winner
-        // lots of action taking place in here
-        getWinner();
-        switchTurns();
-      }
-      }
-      )
+  squares[i].addEventListener('click', function(){
+    // if (winner){
+    // console.log(currentPlayer + " has won!")} else
+    if (!this.innerHTML) {
+      console.log(this);
+      this.classList += currentPlayer.class;
+      this.innerHTML = currentPlayer.marker;
+      // check if the square has already been marked
+      // mark an x or an o
+      // check to see if there's a winner
+      // lots of action taking place in here
+      getWinner();
+      switchTurns();
     }
+  })
+}
