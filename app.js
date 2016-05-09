@@ -18,16 +18,25 @@ var squares = document.querySelectorAll('.square');
 var scores = document.querySelector(currentPlayer.html);
 // var playerOScore = document.querySelector('#playerOScore');
 // var playerXScore = document.querySelector('#playerXScore');
+function logWinner(){
+  console.log("BOOM");
+  winner = currentPlayer;
+  currentPlayer.score +=1;
+  scores.innerHTML = currentPlayer.score
+}
+
+function getWinner (){
+  winRow();
+  winColumn();
+  winDiag();
+}
 
 
 function winRow() {
   if ((squares[0].innerHTML === mark && squares[1].innerHTML === mark && squares[2].innerHTML === mark) ||
       (squares[3].innerHTML === mark && squares[4].innerHTML === mark && squares[5].innerHTML === mark) ||
       (squares[6].innerHTML === mark && squares[7].innerHTML === mark && squares[8].innerHTML === mark)) {
-        console.log("BOOM");
-        winner = currentPlayer;
-        currentPlayer.score +=1;
-        scores.innerHTML = currentPlayer.score
+        logWinner()
   }
 }
 
@@ -35,20 +44,14 @@ function winColumn() {
   if ((squares[0].innerHTML === mark && squares[3].innerHTML === mark && squares[6].innerHTML === mark) ||
       (squares[1].innerHTML === mark && squares[4].innerHTML === mark && squares[7].innerHTML === mark) ||
       (squares[2].innerHTML === mark && squares[5].innerHTML === mark && squares[8].innerHTML === mark)) {
-        console.log("BOOM");
-        winner = currentPlayer;
-        currentPlayer.score +=1;
-        scores.innerHTML = currentPlayer.score
+        logWinner()
   }
 }
 
 function winDiag() {
   if ((squares[0].innerHTML === mark && squares[4].innerHTML === mark && squares[8].innerHTML === mark) ||
       (squares[2].innerHTML === mark && squares[4].innerHTML === mark && squares[6].innerHTML === mark)) {
-        console.log("BOOM");
-        winner = currentPlayer;
-        currentPlayer.score +=1;
-        scores.innerHTML = currentPlayer.score
+        logWinner()
       }
 }
 
