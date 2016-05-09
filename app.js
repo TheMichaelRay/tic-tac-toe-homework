@@ -9,6 +9,15 @@ var game = {
 
 var currentPlayer = game.player1;
 
+var winner;
+
+function winRow() {
+  if (squares[0].innerHTML === squares[1].innerHTML && squares[0].innerHTML === squares[2].innerHTML) {
+    console.log("BOOM");
+    winner = currentPlayer
+  }
+}
+
 function switchTurns() {
   if (currentPlayer == game.player1){
     currentPlayer = game.player2
@@ -25,21 +34,17 @@ var squares = document.querySelectorAll('.square');
 
 for (var i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', function(){
-      if (!this.innerHTML) {
-      console.log(this);
-      this.innerHTML = "<span>" + currentPlayer.marker + "</span>";
-      // check if the square has already been marked
-      // mark an x or an o
-      // check to see if there's a winner
-      // lots of action taking place in here
-      switchTurns();
+      if (winner){
+        console.log(currentPlayer + " has won!")
+      } else if (!this.innerHTML ) {
+        console.log(this);
+        this.innerHTML = "<span>" + currentPlayer.marker + "</span>";
+        // check if the square has already been marked
+        // mark an x or an o
+        // check to see if there's a winner
+        // lots of action taking place in here
+        winRow();
+        switchTurns();
+      }
+      })
     }
-    })
-}
-
-// game.player2.marker = "O"
-// game.player1.marker = "X"
-// but currentPlayer.marker will change to "X" or "O" depending on turns
-//
-// if the value of the text inside the box is null, it should be able to be clicked on
-//  using something like an if statement that is reversed like !('#value')
