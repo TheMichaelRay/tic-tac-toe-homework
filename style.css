@@ -22,3 +22,12 @@ header {
   text-align: center;
   font-size: 48px;
 }
+
+.red {
+  background-color: grey;
+  color: red;
+}
+.blue {
+  background-color: grey;
+  color: blue;
+}
