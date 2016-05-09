@@ -25,14 +25,15 @@ var squares = document.querySelectorAll('.square');
 
 for (var i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', function(){
+      if (!this.innerHTML) {
       console.log(this);
       this.innerHTML = "<span>" + currentPlayer.marker + "</span>";
       // check if the square has already been marked
       // mark an x or an o
       // check to see if there's a winner
       // lots of action taking place in here
-
       switchTurns();
+    }
     })
 }
 
