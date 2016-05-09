@@ -8,13 +8,16 @@
   <body>
     <header>
       <h1>Tic-Tac-Toe</h1>
-      <div>
-        <h3>Player X</h3>
-        <div id="playerXScore">0</div>
-      </div>
-      <div>
-        <h3>Player O</h3>
-        <div id="playerOScore">0</div>
+      <h2><span id="currentPlayerMove">X</span> Make A Move!</h2>
+      <div id="scoreboard">
+          <div id="left">
+            <h3>X</h3>
+            <div id="playerXScore">0</div>
+          </div>
+          <div id="right">
+            <h3>O</h3>
+            <div id="playerOScore">0</div>
+          </div>
       </div>
       <button type="button" name="button">RESET</button>
     </header>

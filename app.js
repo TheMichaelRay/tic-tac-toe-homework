@@ -17,6 +17,7 @@ var currentPlayer = game.player1;
 var mark = currentPlayer.marker;
 var winner;
 var squares = document.querySelectorAll('.square');
+// document.querySelector()
 // var playerOScore = document.querySelector('#playerOScore');
 // var playerXScore = document.querySelector('#playerXScore');
 function reset() {
@@ -41,6 +42,10 @@ function getWinner (){
   winRow();
   winColumn();
   winDiag();
+   if (document.querySelectorAll('.red').length + document.querySelectorAll('.blue').length === 9){
+    alert("Cat's Game :3");
+    reset();
+  }
 }
 
 
@@ -70,9 +75,11 @@ function winDiag() {
 function switchTurns() {
   if (currentPlayer == game.player1){
     currentPlayer = game.player2;
+    document.querySelector('#currentPlayerMove').innerHTML = currentPlayer.marker;
     mark = currentPlayer.marker
   } else {
     currentPlayer = game.player1;
+    document.querySelector('#currentPlayerMove').innerHTML = currentPlayer.marker;
     mark = currentPlayer.marker
   }
 }
