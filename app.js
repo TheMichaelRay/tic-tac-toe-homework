@@ -1,4 +1,6 @@
 var game = {
+
+  // players and their indicators
   player1: {
     marker: "X",
     score: 0,
@@ -10,84 +12,86 @@ var game = {
     score: 0,
     html: '#playerOScore',
     class: ' blue'
+  },
+  // function bank
+  functions: {
+    logWinner: function(){
+      console.log("BOOM");
+      alert(game.currentPlayer.marker + " has won!")
+      game.currentPlayer.score +=1;
+      $(game.currentPlayer.html).html(game.currentPlayer.score);
+      reset();
+    },
+
+
   }
+
 }
 
 var currentPlayer = game.player1;
-var mark = currentPlayer.marker;
-var winner;
+var mark = game.currentPlayer.marker;
 var $squares = $('.square');
-var squares = document.querySelectorAll('.square');
 function reset() {
-    $squares.html('');
-    $squares.removeClass('red blue');
+    game.$squares.html('');
+    game.$squares.removeClass('red blue');
   }
 
 
-function logWinner(){
-  console.log("BOOM");
-  alert(currentPlayer.marker + " has won!")
-  currentPlayer.score +=1;
-  $(currentPlayer.html).html(currentPlayer.score);
-  reset();
-}
 
 function getWinner (){
-  winRow();
-  winColumn();
-  winDiag();
-   if ($('.red').length + $('.blue').length === 9){
+  game.functions.winRow();
+  game.functions.winColumn();
+  game.functions.winDiag();
+   if ($('.red').length + $('.blue').length === game.$squares.length){
     alert("Cat's Game :3");
-    reset();
+    game.functions.reset();
   }
 }
 
 
 function winRow() {
   for(i=0; i<9; i+=3) {
-  if ($($squares[i]).html() === mark && $($squares[i+1]).html() === mark && $($squares[i+2]).html() === mark) {
-        logWinner()
+  if ($(game.$squares[i]).html() === game.mark && $(game.$squares[i+1]).html() === game.mark && $(game.$squares[i+2]).html() === game.mark) {
+        game.functions.logWinner()
       }
   }
 }
   function winColumn() {
     for (i=0; i<3; i++) {
-      if ($($squares[i]).html() === mark && $($squares[i+3]).html() === mark && $($squares[i+6]).html() === mark) {
-          logWinner()
+      if ($(game.$squares[i]).html() === game.mark && $(game.$squares[i+3]).html() === game.mark && $(game.$squares[i+6]).html() === game.mark) {
+          game.functions.logWinner()
     }
   }
 }
 
 function winDiag() {
-  if (($($squares[0]).html() === mark && $($squares[4]).html() === mark && $($squares[8]).html() === mark) ||
-      ($($squares[2]).html() === mark && $($squares[4]).html() === mark && $($squares[6]).html() === mark)) {
-        logWinner()
+  if (($(game.$squares[0]).html() === game.mark && $(game.$squares[4]).html() === game.mark && $(game.$squares[8]).html() === game.mark) ||
+      ($(game.$squares[2]).html() === game.mark && $(game.$squares[4]).html() === game.mark && $(game.$squares[6]).html() === game.mark)) {
+        game.functions.logWinner()
       }
 }
 
 function switchTurns() {
-  if (currentPlayer == game.player1){
-    currentPlayer = game.player2;
+  if (game.currentPlayer == game.player1){
+    game.currentPlayer = game.player2;
     $('#currentPlayerMove').html(currentPlayer.marker);
-    mark = currentPlayer.marker
+    game.mark = currentPlayer.marker
   } else {
-    currentPlayer = game.player1;
+    game.currentPlayer = game.player1;
     $('#currentPlayerMove').html(currentPlayer.marker);
-    mark = currentPlayer.marker
+    game.mark = currentPlayer.marker
   }
 }
 
 
-$('button').on('click', reset)
+$('button').on('click', game.reset)
 
-// for (var i = 0; i < $squares.length; i++) {
-  $squares.on('click', function(){
-    if (!$(this).html()) {
-      console.log(this);
-      $(this).addClass(currentPlayer.class);
-      $(this).html(currentPlayer.marker);
-      getWinner();
-      switchTurns();
+$squares.on('click', function(){
+  if (!$(this).html()) {
+    console.log(this);
+    $(this).addClass(currentPlayer.class);
+    $(this).html(currentPlayer.marker);
+    game.functions.getWinner();
+    game.functions.switchTurns();
     }
   })
-// }
